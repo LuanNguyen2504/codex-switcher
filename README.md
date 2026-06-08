@@ -60,6 +60,12 @@ Accounts with 0% 5-hour quota, 0% weekly quota, or failed quota reload are place
 
 ## Installation
 
+### Download DMG
+
+The current public release includes a macOS Apple Silicon DMG:
+
+- [custom-v0.2.2 release](https://github.com/LuanNguyen2504/codex-switcher/releases/tag/custom-v0.2.2)
+
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/) 18 or newer
