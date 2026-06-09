@@ -25,8 +25,8 @@ export interface QuotaSwitchCandidate {
  *
  * Purpose:
  *   Applies the configured priority-account rule after quota reports refresh: accounts with both
- *   quotas available rank first, then starred accounts, nearest primary reset, nearest weekly
- *   reset, most weekly quota remaining, and most primary quota remaining.
+ *   quotas available rank first, then starred accounts, most weekly quota remaining, most primary
+ *   quota remaining, nearest primary reset, and nearest weekly reset.
  * Inputs:
  *   accounts - Required list of known accounts, including creation timestamps and current active
  *   state.

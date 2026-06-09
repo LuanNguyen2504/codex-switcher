@@ -18,8 +18,8 @@ const QUOTA_SELECTABLE_MIN_REMAINING_PERCENT = 0;
  * Sorts accounts using the quota priority order configured for switching and menu bar display.
  *
  * Purpose:
- *   Applies the shared ranking rule: selectable accounts first, starred accounts, nearest 5h
- *   reset, nearest weekly reset, most weekly quota remaining, then most 5h quota remaining.
+ *   Applies the shared ranking rule: selectable accounts first, starred accounts, most weekly
+ *   quota remaining, most 5h quota remaining, nearest 5h reset, then nearest weekly reset.
  * Inputs:
  *   accounts - Required account list to sort; the source array is not mutated.
  *   priorityAccountIds - Required set of starred account IDs.
@@ -73,18 +73,6 @@ export function compareQuotaAccountOrderingEntries(
     return first.priorityQuotaEnabled ? -1 : 1;
   }
 
-  const primaryResetDiff = compareOptionalAscending(
-    first.account.usage?.primary_resets_at,
-    second.account.usage?.primary_resets_at
-  );
-  if (primaryResetDiff !== 0) return primaryResetDiff;
-
-  const weeklyResetDiff = compareOptionalAscending(
-    first.account.usage?.secondary_resets_at,
-    second.account.usage?.secondary_resets_at
-  );
-  if (weeklyResetDiff !== 0) return weeklyResetDiff;
-
   const weeklyRemainingDiff = compareOptionalDescending(
     getRemainingQuotaPercent(first.account.usage?.secondary_used_percent),
     getRemainingQuotaPercent(second.account.usage?.secondary_used_percent)
@@ -96,6 +84,18 @@ export function compareQuotaAccountOrderingEntries(
     getRemainingQuotaPercent(second.account.usage?.primary_used_percent)
   );
   if (primaryRemainingDiff !== 0) return primaryRemainingDiff;
+
+  const primaryResetDiff = compareOptionalAscending(
+    first.account.usage?.primary_resets_at,
+    second.account.usage?.primary_resets_at
+  );
+  if (primaryResetDiff !== 0) return primaryResetDiff;
+
+  const weeklyResetDiff = compareOptionalAscending(
+    first.account.usage?.secondary_resets_at,
+    second.account.usage?.secondary_resets_at
+  );
+  if (weeklyResetDiff !== 0) return weeklyResetDiff;
 
   return getAccountDisplayEmail(first.account).localeCompare(
     getAccountDisplayEmail(second.account)

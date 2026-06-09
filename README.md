@@ -51,10 +51,10 @@ When automatic switching is needed, eligible accounts are sorted by:
 
 1. Accounts with both 5-hour quota and weekly quota remaining.
 2. Priority accounts marked with the star toggle.
-3. Nearest 5-hour reset time.
-4. Nearest weekly reset time.
-5. Highest weekly quota remaining.
-6. Highest 5-hour quota remaining.
+3. Highest weekly quota remaining.
+4. Highest 5-hour quota remaining.
+5. Nearest 5-hour reset time.
+6. Nearest weekly reset time.
 
 Accounts with 0% 5-hour quota, 0% weekly quota, or failed quota reload are placed after selectable accounts and are not used for automatic switching.
 
